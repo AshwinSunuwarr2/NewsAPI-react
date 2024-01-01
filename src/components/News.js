@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
+import PropTypes from "prop-types";
 
 export default class News extends Component {
+  static defaulProps = {
+    country: "nepal",
+    pageSize: 8,
+  };
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+  };
   constructor() {
     super();
     console.log("constructor works");
@@ -14,7 +23,7 @@ export default class News extends Component {
   }
 
   async componentDidMount() {
-    let newsApi = `https://newsapi.org/v2/everything?q=(nepal+sports)&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&page=1&pageSize=${this.props.pageItem}`;
+    let newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${this.props.category})&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&page=1&pageSize=${this.props.pageItem}`;
     this.setState({ loading: true });
     let data = await fetch(newsApi);
     let parsedData = await data.json();
@@ -22,13 +31,16 @@ export default class News extends Component {
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
+      loading: false,
     });
   }
 
   handlePrevClick = async () => {
     console.log("previous");
 
-    let newsApi = `https://newsapi.org/v2/everything?q=(nepal+sports)&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
+    let newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${
+      this.props.category
+    })&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
       this.props.pageItem
     }&page=${this.state.page - 1}`;
     this.setState({ loading: true });
@@ -50,7 +62,11 @@ export default class News extends Component {
         Math.ceil(this.state.totalResults / this.props.pageItem)
       )
     ) {
-      let newsApi = `https://newsapi.org/v2/everything?q=(nepal+sports)&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
+      let newsApi = `https://newsapi.org/v2/everything?q=(${
+        this.props.country
+      }+${
+        this.props.category
+      })&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
         this.props.pageItem
       }&page=${this.state.page + 1}`;
       this.setState({ loading: true });
@@ -69,7 +85,12 @@ export default class News extends Component {
       <div className="container my-3">
         <h2 className="mb-3 text-center">Top headlines by - NewsBuddy</h2>
         {this.state.loading && <Spinner />}
-        <div className="row mb-2" style={{ alignSelf: "center" }}>
+        <div
+          className="row mb-2"
+          style={{
+            margin: "0px 10px",
+          }}
+        >
           {!this.state.loading && this.state.articles
             ? this.state.articles.map((element) => {
                 return (
@@ -85,7 +106,7 @@ export default class News extends Component {
                   </div>
                 );
               })
-            : "loading.."}
+            : ""}
           <div className="container  d-flex justify-content-between">
             <button
               disabled={this.state.page <= 1 ? true : false}
