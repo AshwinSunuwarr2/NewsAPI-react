@@ -1,7 +1,21 @@
-business
-entertainment
-general
-health
-science
-sports
-technology
+<Route path="/">
+              <News pageItem={6} country="nepal" category="business" />
+            </Route>
+<Route path="/">
+              <News pageItem={6} country="nepal" category="entertainment" />
+            </Route>
+<Route path="/">
+              <News pageItem={6} country="nepal" category="general" />
+            </Route>
+<Route path="/">
+              <News pageItem={6} country="nepal" category="health" />
+            </Route>
+<Route path="/">
+              <News pageItem={6} country="nepal" category="science" />
+            </Route>
+<Route path="/">
+              <News pageItem={6} country="nepal" category="sports" />
+            </Route>
+<Route path="/">
+              <News pageItem={6} country="nepal" category="technology" />
+            </Route>

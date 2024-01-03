@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Component } from "react";
 import NavBar from "./components/NavBar";
 import News from "./components/News";
+import Aboutus from "./components/Aboutus";
 
 export default class App extends Component {
   render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
           <NavBar />
 
           <Routes>
+            <Route exact path="/aboutus" element={<Aboutus />} />
             <Route
               exact
               path="/"
