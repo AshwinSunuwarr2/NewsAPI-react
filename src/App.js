@@ -7,14 +7,28 @@ import { Component } from "react";
 import NavBar from "./components/NavBar";
 import News from "./components/News";
 import Aboutus from "./components/Aboutus";
+import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
+  pageSize = 9;
+
+  state = {
+    progress: 0,
+  };
+  setProgress = (progress) => {
+    this.setState({ progress: progress });
+  };
+
   render() {
     return (
       <>
         <Router>
           <NavBar />
-
+          <LoadingBar
+            color="#f11946"
+            progress={this.state.progress}
+            // onLoaderFinished={() => setProgress(0)}
+          />
           <Routes>
             <Route exact path="/aboutus" element={<Aboutus />} />
             <Route
@@ -22,7 +36,8 @@ export default class App extends Component {
               path="/"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="general"
                   category="general"
@@ -34,7 +49,8 @@ export default class App extends Component {
               path="/business"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="business"
                   category="business"
@@ -46,7 +62,8 @@ export default class App extends Component {
               path="/entertainment"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="entertainment"
                   category="entertainment"
@@ -58,7 +75,8 @@ export default class App extends Component {
               path="/general"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="general"
                   category="general"
@@ -70,7 +88,8 @@ export default class App extends Component {
               path="/health"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="health"
                   category="health"
@@ -82,7 +101,8 @@ export default class App extends Component {
               path="/science"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="science"
                   category="science"
@@ -94,7 +114,8 @@ export default class App extends Component {
               path="/sports"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="sports"
                   category="sports"
@@ -106,7 +127,8 @@ export default class App extends Component {
               path="/technology"
               element={
                 <News
-                  pageItem={6}
+                  setProgress={this.setProgress}
+                  pageItem={this.pageSize}
                   country="nepal"
                   key="technology"
                   category="technology"

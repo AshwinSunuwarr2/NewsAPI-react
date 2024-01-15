@@ -20,9 +20,11 @@ export default class News extends Component {
       loading: false,
       page: 1,
     };
+    document.title = `NewsBuddy`;
   }
 
   async componentDidMount() {
+    this.props.setProgress(10);
     let newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${this.props.category})&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&page=1&pageSize=${this.props.pageItem}`;
     this.setState({ loading: true });
     let data = await fetch(newsApi);
@@ -33,6 +35,7 @@ export default class News extends Component {
       totalResults: parsedData.totalResults,
       loading: false,
     });
+    this.props.setProgress(100);
   }
 
   handlePrevClick = async () => {
@@ -84,7 +87,7 @@ export default class News extends Component {
     return (
       <div className="container my-3">
         <h2 className="mb-3 text-center">Top headlines by - NewsBuddy</h2>
-        {this.state.loading && <Spinner />}
+        {/* {this.state.loading && <Spinner />} */}
         <div
           className="row mb-2"
           style={{
@@ -96,12 +99,19 @@ export default class News extends Component {
                 return (
                   <div className="col-md-4" key={element.url}>
                     <NewsItem
-                      title={element.title ? element.title : ""}
+                      title={element.title ? element.title : "no title"}
                       description={
-                        element.description ? element.description : ""
+                        element.description
+                          ? element.description
+                          : "no description"
                       }
                       urlToImage={element.urlToImage}
-                      newsUrl={element.url ? element.url : "url"}
+                      newsUrl={element.url ? element.url : "no image"}
+                      dateTime={
+                        element.publishedAt ? element.publishedAt : "unknown"
+                      }
+                      author={element.author ? element.author : "unknown"}
+                      source={element.source ? element.source.name : "unknown"}
                     />
                   </div>
                 );
