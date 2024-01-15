@@ -34,7 +34,7 @@ export class NavBar extends Component {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" aria-disabled="true" to="/business">
-                  business
+                  Business
                 </Link>
               </li>
               <li className="nav-item">
@@ -43,27 +43,27 @@ export class NavBar extends Component {
                   aria-disabled="true"
                   to="/entertainment"
                 >
-                  entertainment
+                  Entertainment
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" aria-disabled="true" to="/general">
-                  general
+                  General
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" aria-disabled="true" to="/health">
-                  health
+                  Health
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" aria-disabled="true" to="/science">
-                  science
+                  Science
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" aria-disabled="true" to="/sports">
-                  sports
+                  Sports
                 </Link>
               </li>
               <li className="nav-item">
@@ -72,7 +72,7 @@ export class NavBar extends Component {
                   aria-disabled="true"
                   to="/technology"
                 >
-                  technology
+                  Technology
                 </Link>
               </li>
             </ul>

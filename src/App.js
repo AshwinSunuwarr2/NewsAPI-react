@@ -10,7 +10,7 @@ import Aboutus from "./components/Aboutus";
 import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
-  pageSize = 9;
+  pageSize = 11;
 
   state = {
     progress: 0,

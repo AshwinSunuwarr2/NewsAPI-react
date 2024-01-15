@@ -12,19 +12,39 @@ export default class News extends Component {
     country: PropTypes.string,
     pageSize: PropTypes.number,
   };
-  constructor() {
-    super();
+
+  Capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+  constructor(props) {
+    super(props);
     console.log("constructor works");
     this.state = {
       articles: [],
       loading: false,
       page: 1,
     };
-    document.title = `NewsBuddy`;
+
+    document.title = `${this.Capitalize(this.props.category)} - NewsBuddy`;
+  }
+
+  async updateNews(pageNo) {
+    this.props.setProgress(10);
+    const newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${this.props.category})&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&page=${this.state.page}&pageSize=${this.props.pageItem}`;
+    this.setState({ loading: true });
+    let data = await fetch(newsApi);
+    let parsedData = await data.json();
+    console.log(parsedData);
+    this.props.setProgress(70);
+    this.setState({
+      articles: parsedData.articles,
+      totalResults: parsedData.totalResults,
+      loading: false,
+    });
+    this.props.setProgress(100);
   }
 
   async componentDidMount() {
-    this.props.setProgress(10);
     let newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${this.props.category})&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&page=1&pageSize=${this.props.pageItem}`;
     this.setState({ loading: true });
     let data = await fetch(newsApi);
@@ -35,69 +55,70 @@ export default class News extends Component {
       totalResults: parsedData.totalResults,
       loading: false,
     });
-    this.props.setProgress(100);
   }
 
   handlePrevClick = async () => {
-    console.log("previous");
+    // console.log("previous");
 
-    let newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${
-      this.props.category
-    })&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
-      this.props.pageItem
-    }&page=${this.state.page - 1}`;
-    this.setState({ loading: true });
-    let data = await fetch(newsApi);
-    let parsedData = await data.json();
+    // let newsApi = `https://newsapi.org/v2/everything?q=(${this.props.country}+${
+    //   this.props.category
+    // })&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
+    //   this.props.pageItem
+    // }&page=${this.state.page - 1}`;
+    // this.setState({ loading: true });
+    // let data = await fetch(newsApi);
+    // let parsedData = await data.json();
 
-    this.setState({
-      page: this.state.page - 1,
-      articles: parsedData.articles,
-      loading: false,
-    });
+    // this.setState({
+    //   page: this.state.page - 1,
+    //   articles: parsedData.articles,
+    //   loading: false,
+    // });
+    this.setState({ page: this.state.page - 1 });
+    this.updateNews();
   };
-  handleNextClick = async () => {
-    console.log("next");
 
-    if (
-      !(
-        this.state.page + 1 >
-        Math.ceil(this.state.totalResults / this.props.pageItem)
-      )
-    ) {
-      let newsApi = `https://newsapi.org/v2/everything?q=(${
-        this.props.country
-      }+${
-        this.props.category
-      })&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
-        this.props.pageItem
-      }&page=${this.state.page + 1}`;
-      this.setState({ loading: true });
-      let data = await fetch(newsApi);
-      let parsedData = await data.json();
-      this.setState({
-        page: this.state.page + 1,
-        articles: parsedData.articles,
-        loading: false,
-      });
-    }
+  handleNextClick = async () => {
+    // console.log("next");
+
+    // if (
+    //   !(
+    //     this.state.page + 1 >
+    //     Math.ceil(this.state.totalResults / this.props.pageItem)
+    //   )
+    // ) {
+    //   let newsApi = `https://newsapi.org/v2/everything?q=(${
+    //     this.props.country
+    //   }+${
+    //     this.props.category
+    //   })&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&pageSize=${
+    //     this.props.pageItem
+    //   }&page=${this.state.page + 1}`;
+    //   this.setState({ loading: true });
+    //   let data = await fetch(newsApi);
+    //   let parsedData = await data.json();
+    //   this.setState({
+    //     page: this.state.page + 1,
+    //     articles: parsedData.articles,
+    //     loading: false,
+    //   });
+    // }
+    this.setState({ page: this.state.page + 1 });
+    this.updateNews();
   };
 
   render() {
     return (
       <div className="container my-3">
-        <h2 className="mb-3 text-center">Top headlines by - NewsBuddy</h2>
+        <h2 className="container mb-3 text-center">
+          NewsBuddy - Top {this.state.category} Headlines
+        </h2>
         {/* {this.state.loading && <Spinner />} */}
-        <div
-          className="row mb-2"
-          style={{
-            margin: "0px 10px",
-          }}
-        >
+        <div className="row mb-2">
           {!this.state.loading && this.state.articles
             ? this.state.articles.map((element) => {
                 return (
-                  <div className="col-md-4" key={element.url}>
+                  <div className="col-md-3" key={element.url}>
                     <NewsItem
                       title={element.title ? element.title : "no title"}
                       description={
@@ -106,7 +127,9 @@ export default class News extends Component {
                           : "no description"
                       }
                       urlToImage={element.urlToImage}
-                      newsUrl={element.url ? element.url : "no image"}
+                      newsUrl={
+                        element.url ? element.url : "https://fakeimg.pl/600x400"
+                      }
                       dateTime={
                         element.publishedAt ? element.publishedAt : "unknown"
                       }
@@ -117,7 +140,7 @@ export default class News extends Component {
                 );
               })
             : ""}
-          <div className="container  d-flex justify-content-between">
+          <div className="container d-flex justify-content-between">
             <button
               disabled={this.state.page <= 1 ? true : false}
               type="button"

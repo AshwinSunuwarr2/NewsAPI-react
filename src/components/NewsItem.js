@@ -7,8 +7,31 @@ export class NewsItem extends Component {
     let { title, description, urlToImage, newsUrl, author, dateTime, source } =
       this.props;
     return (
-      <div className="container ml-20">
-        <div className="card my-3 mx-2" style={{ width: "18rem" }}>
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          className="card my-3 mx-2"
+          style={{
+            width: "18rem",
+          }}
+        >
+          <span
+            className="badge rounded-pill bg-danger"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              right: 0,
+              position: "absolute",
+            }}
+          >
+            {source}
+          </span>
           <img
             src={urlToImage ? urlToImage : "./logo512"}
             className="card-img-top"
@@ -16,14 +39,32 @@ export class NewsItem extends Component {
             style={{ width: "18rem", height: "160px" }}
           />
           <div className="card-body">
-            <span
-              className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"
-              style={{ zIndex: 1, left: "90%" }}
+            <h5
+              className="card-title"
+              style={{
+                height: "6rem",
+                paddingTop: "12px",
+                alignSelf: "center",
+                fontSize: "20px",
+                fontWeight: 700,
+                fontFamily: "serif",
+              }}
             >
-              {source}
-            </span>
-            <h5 className="card-title">{title}</h5>
-            <p className="card-text">{description}</p>
+              {title}
+            </h5>
+            <p
+              className="card-text"
+              style={{
+                textAlign: "justify",
+                fontFamily: "poppins",
+                fontWeight: 300,
+                letterSpacing: 0.25,
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}
+            >
+              {description}
+            </p>
             <p className="card-text">
               <small className="text-muted">
                 By {author} on {new Date(dateTime).toUTCString()}
