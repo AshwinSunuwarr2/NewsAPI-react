@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Component } from "react";
 import NavBar from "./components/NavBar";
 import News from "./components/News";
-import Aboutus from "./components/Aboutus";
+// import Aboutus from "./components/Aboutus";
 import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
   pageSize = 11;
-
+  news_api = process.env.REACT_APP_NEWS_API;
   state = {
     progress: 0,
   };
@@ -30,13 +30,14 @@ export default class App extends Component {
             // onLoaderFinished={() => setProgress(0)}
           />
           <Routes>
-            <Route exact path="/aboutus" element={<Aboutus />} />
+            {/* <Route exact path="/aboutus" element={<Aboutus />} /> */}
             <Route
               exact
               path="/"
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="general"
@@ -50,6 +51,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="business"
@@ -63,6 +65,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="entertainment"
@@ -76,6 +79,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="general"
@@ -89,6 +93,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="health"
@@ -102,6 +107,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="science"
@@ -115,6 +121,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="sports"
@@ -128,6 +135,7 @@ export default class App extends Component {
               element={
                 <News
                   setProgress={this.setProgress}
+                  news_api={this.news_api}
                   pageItem={this.pageSize}
                   country="nepal"
                   key="technology"
