@@ -33,7 +33,7 @@ const News = (props) => {
 
   useEffect(() => {
     updateNews();
-  }, []);
+  }, [updateNews]);
 
   // handlePrevClick = async () => {
   //   // console.log("previous");
@@ -98,7 +98,6 @@ const News = (props) => {
 
     setArticles(articles.concat(parsedData.articles));
     setTotalResults(parsedData.totalResults);
-    setLoading(false);
     props.setProgress(100);
   };
 
@@ -117,7 +116,7 @@ const News = (props) => {
           dataLength={articles.length}
           next={fetchMoreData}
           hasMore={articles.length !== totalResults}
-          loader={<Spinner />}
+          loader={articles.length <= totalResults ? <Spinner /> : ""}
         >
           <div className="container">
             <div className="row mb-2">
