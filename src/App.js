@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import News from "./components/News";
-// import Aboutus from "./components/Aboutus";
+import Aboutus from "./components/Aboutus";
 import LoadingBar from "react-top-loading-bar";
 
 const App = () => {
@@ -13,17 +13,18 @@ const App = () => {
 
   const [progress, setProgress] = useState(0);
 
+  const [bgMode, setBgMode] = useState("white");
+
   return (
     <>
       <Router>
-        <NavBar />
+        <NavBar bgMode={bgMode} />
         <LoadingBar
           color="#f11946"
           progress={progress}
           // onLoaderFinished={() => setProgress(0)}
         />
         <Routes>
-          {/* <Route exact path="/aboutus" element={<Aboutus />} /> */}
           <Route
             exact
             path="/"
@@ -136,10 +137,10 @@ const App = () => {
               />
             }
           />
+          <Route exact path="/aboutus" element={<Aboutus />} bgMode={bgMode} />
         </Routes>
       </Router>
     </>
   );
 };
-
 export default App;

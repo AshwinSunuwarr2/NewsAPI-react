@@ -33,7 +33,7 @@ const News = (props) => {
 
   useEffect(() => {
     updateNews();
-  }, [updateNews]);
+  }, []);
 
   // handlePrevClick = async () => {
   //   // console.log("previous");
@@ -95,7 +95,6 @@ const News = (props) => {
     let parsedData = await data.json();
     console.log(parsedData);
     props.setProgress(70);
-
     setArticles(articles.concat(parsedData.articles));
     setTotalResults(parsedData.totalResults);
     props.setProgress(100);
@@ -108,7 +107,7 @@ const News = (props) => {
           className="container mb-3 text-center"
           style={{ marginTop: "90px" }}
         >
-          NewsBuddy - Top {Capitalize(props.category)} Headlines
+          NewsBud - Top {Capitalize(props.category)} Headlines
         </h2>
         {loading && <Spinner />}
 
@@ -116,7 +115,8 @@ const News = (props) => {
           dataLength={articles.length}
           next={fetchMoreData}
           hasMore={articles.length !== totalResults}
-          loader={articles.length <= totalResults ? <Spinner /> : ""}
+          // loader={articles.length <= totalResults ? <Spinner /> : ""}
+          loader={true}
         >
           <div className="container">
             <div className="row mb-2">
