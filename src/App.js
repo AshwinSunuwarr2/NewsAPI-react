@@ -13,19 +13,19 @@ const App = () => {
 
   const [progress, setProgress] = useState(0);
 
-  const [bgMode, setBgMode] = useState({ color: "white", background: "black" });
+  const [bgMode, setBgMode] = useState({ color: "black", background: "white" });
 
   const toggleBgMode = () => {
-    console.log("bg handler......");
-    if (bgMode.color === "white") {
-      setBgMode({ color: "black", background: "white" });
-    } else {
+    // console.log("bg handler......");
+    if (bgMode.color === "black") {
       setBgMode({ color: "white", background: "black" });
+    } else {
+      setBgMode({ color: "black", background: "white" });
     }
   };
 
   return (
-    <>
+    <div style={bgMode}>
       <Router>
         <NavBar bgMode={bgMode} toggleBgMode={toggleBgMode} />
         <LoadingBar
@@ -146,10 +146,14 @@ const App = () => {
               />
             }
           />
-          <Route exact path="/aboutus" element={<Aboutus />} bgMode={bgMode} />
+          <Route
+            exact
+            path="/aboutus"
+            element={<Aboutus bgMode={bgMode} toggleBgMode={toggleBgMode} />}
+          />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 };
 export default App;

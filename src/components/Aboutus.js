@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Aboutus(props) {
   return (
-    <div className="container my-5">
+    <div className="container py-5" style={props.bgMode}>
       <div className="accordion py-3" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header">
@@ -101,9 +101,11 @@ export default function Aboutus(props) {
           </div>
         </div>
       </div>
-      <button className="btn btn-dark" type="submit" onClick={props.toggleMode}>
-        modes
-      </button>
+      <button
+        className="btn btn-dark"
+        type="submit"
+        onClick={props.toggleBgMode}
+      ></button>
     </div>
   );
 }

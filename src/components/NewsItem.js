@@ -3,6 +3,7 @@ import React from "react";
 const NewsItem = (props) => {
   let { title, description, urlToImage, newsUrl, author, dateTime, source } =
     props;
+
   return (
     <div className="container">
       <div className="card my-3">
@@ -20,7 +21,7 @@ const NewsItem = (props) => {
         <img
           src={
             !urlToImage
-              ? "https://images.freeimages.com/image/previews/095/global-time-zone-map-tags-mapid-worldmarket-qzone-5690059.jpg"
+              ? "https://cdn.pixabay.com/photo/2014/08/07/21/13/newspaper-412811_1280.jpg"
               : urlToImage
           }
           alt="Not Accessable."

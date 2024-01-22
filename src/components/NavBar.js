@@ -27,108 +27,120 @@ const NavBar = (props) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-current="page"
                 to="/"
-                style={props.bgMode}
               >
                 Home
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/aboutus"
-                style={props.bgMode}
               >
                 About
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/business"
-                style={props.bgMode}
               >
                 Business
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/entertainment"
-                style={props.bgMode}
               >
                 Entertainment
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/general"
-                style={props.bgMode}
               >
                 General
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/health"
-                style={props.bgMode}
               >
                 Health
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/science"
-                style={props.bgMode}
               >
                 Science
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/sports"
-                style={props.bgMode}
               >
                 Sports
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  props.bgMode.background === "black" ? "text-light" : ""
+                }`}
                 aria-disabled="true"
                 to="/technology"
-                style={props.bgMode}
               >
                 Technology
               </Link>
             </li>
           </ul>
           {/* <button>helo</button> */}
-        </div>
-        <div className="form-check form-switch lg-none">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-            onClick={props.toggleMode}
-          />
-          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-            darkMode
-          </label>
+          <div className="form-check form-switch lg-none" style={props.bgMode}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onClick={props.toggleMode}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              darkMode
+            </label>
+          </div>
         </div>
       </div>
     </nav>

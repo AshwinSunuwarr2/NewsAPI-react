@@ -86,7 +86,7 @@ const News = (props) => {
   // };
 
   const fetchMoreData = async () => {
-    setPage(page + 1);
+    setPage((page) => page + 1);
 
     props.setProgress(10);
     const newsApi = `https://newsapi.org/v2/everything?q=(${props.country}+${props.category})&sortBy=publishedAt&apiKey=b4e29624892b41b0ab30a25f00b5e76f&page=${page}&pageSize=${props.pageItem}`;
@@ -132,11 +132,7 @@ const News = (props) => {
                               : "no description"
                           }
                           urlToImage={element.urlToImage}
-                          newsUrl={
-                            element.url
-                              ? element.url
-                              : "https://fakeimg.pl/600x400"
-                          }
+                          newsUrl={element.url}
                           dateTime={
                             element.publishedAt
                               ? element.publishedAt
