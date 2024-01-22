@@ -1,27 +1,6 @@
 import React, { useState } from "react";
 
 export default function Aboutus(props) {
-  let [myStyle, setMyStyle] = useState({
-    color: "black",
-    background: "white",
-  });
-
-  let [btnTxt, setBtnTxt] = useState("Enable Dark mode");
-  const handleDarkMode = () => {
-    if (myStyle.color === "black") {
-      setMyStyle({
-        color: "white",
-        background: "black",
-      });
-      setBtnTxt("Enable Light Mode");
-    } else {
-      setMyStyle({
-        color: "black",
-        background: "white",
-      });
-      setBtnTxt("Enable Dark Mode");
-    }
-  };
   return (
     <div className="container my-5">
       <div className="accordion py-3" id="accordionExample">
@@ -34,7 +13,7 @@ export default function Aboutus(props) {
               data-bs-target="#collapseOne"
               aria-expanded="true"
               aria-controls="collapseOne"
-              style={myStyle}
+              style={props.bgMode}
             >
               Accordion Item #1
             </button>
@@ -43,7 +22,7 @@ export default function Aboutus(props) {
             id="collapseOne"
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
-            style={myStyle}
+            style={props.bgMode}
           >
             <div className="accordion-body">
               <strong>This is the first item's accordion body.</strong> It is
@@ -66,13 +45,13 @@ export default function Aboutus(props) {
               data-bs-target="#collapseTwo"
               aria-expanded="false"
               aria-controls="collapseTwo"
-              style={myStyle}
+              style={props.bgMode}
             >
               Accordion Item #2
             </button>
           </h2>
           <div
-            style={myStyle}
+            style={props.bgMode}
             id="collapseTwo"
             className="accordion-collapse collapse"
             data-bs-parent="#accordionExample"
@@ -92,7 +71,7 @@ export default function Aboutus(props) {
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
-              style={myStyle}
+              style={props.bgMode}
               className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
@@ -104,7 +83,7 @@ export default function Aboutus(props) {
             </button>
           </h2>
           <div
-            style={myStyle}
+            style={props.bgMode}
             id="collapseThree"
             className="accordion-collapse collapse"
             data-bs-parent="#accordionExample"
@@ -122,8 +101,8 @@ export default function Aboutus(props) {
           </div>
         </div>
       </div>
-      <button className="btn btn-dark" type="submit" onClick={handleDarkMode}>
-        {btnTxt}
+      <button className="btn btn-dark" type="submit" onClick={props.toggleMode}>
+        modes
       </button>
     </div>
   );

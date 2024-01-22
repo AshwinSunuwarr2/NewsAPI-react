@@ -13,12 +13,21 @@ const App = () => {
 
   const [progress, setProgress] = useState(0);
 
-  const [bgMode, setBgMode] = useState("white");
+  const [bgMode, setBgMode] = useState({ color: "white", background: "black" });
+
+  const toggleBgMode = () => {
+    console.log("bg handler......");
+    if (bgMode.color === "white") {
+      setBgMode({ color: "black", background: "white" });
+    } else {
+      setBgMode({ color: "white", background: "black" });
+    }
+  };
 
   return (
     <>
       <Router>
-        <NavBar bgMode={bgMode} />
+        <NavBar bgMode={bgMode} toggleBgMode={toggleBgMode} />
         <LoadingBar
           color="#f11946"
           progress={progress}

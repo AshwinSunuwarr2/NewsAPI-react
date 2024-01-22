@@ -1,33 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
-  const [darkStyle, setDarkStyle] = useState({
-    background: `${props.bgMode}`,
-    color: "black",
-  });
-
-  const [handleTxt, setHandleTxt] = useState("Enable dark mode");
-  const handleDarkMode = () => {
-    if (darkStyle.color === "black") {
-      setDarkStyle({
-        background: "black",
-        color: "white",
-      });
-      setHandleTxt("Enable light mode");
-    } else {
-      setDarkStyle({
-        background: "white",
-        color: "black",
-      });
-      setHandleTxt("Enable dark mode");
-    }
-  };
-
   return (
     <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary py-0">
-      <div className="container-fluid" style={darkStyle}>
-        <Link className="navbar-brand" to="/" style={darkStyle}>
+      <div className="container-fluid" style={props.bgMode}>
+        <Link className="navbar-brand" to="/" style={props.bgMode}>
           NewsBud
         </Link>
         <button
@@ -44,7 +22,7 @@ const NavBar = (props) => {
         <div
           className="collapse navbar-collapse"
           id="navbarSupportedContent"
-          style={darkStyle}
+          style={props.bgMode}
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
@@ -52,7 +30,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-current="page"
                 to="/"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Home
               </Link>
@@ -62,7 +40,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/aboutus"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 About
               </Link>
@@ -72,7 +50,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/business"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Business
               </Link>
@@ -82,7 +60,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/entertainment"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Entertainment
               </Link>
@@ -92,7 +70,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/general"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 General
               </Link>
@@ -102,7 +80,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/health"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Health
               </Link>
@@ -112,7 +90,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/science"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Science
               </Link>
@@ -122,7 +100,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/sports"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Sports
               </Link>
@@ -132,7 +110,7 @@ const NavBar = (props) => {
                 className="nav-link"
                 aria-disabled="true"
                 to="/technology"
-                style={darkStyle}
+                style={props.bgMode}
               >
                 Technology
               </Link>
@@ -146,10 +124,10 @@ const NavBar = (props) => {
             type="checkbox"
             role="switch"
             id="flexSwitchCheckDefault"
-            onClick={handleDarkMode}
+            onClick={props.toggleMode}
           />
-          <label className="form-check-label" for="flexSwitchCheckDefault">
-            {handleTxt}
+          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+            darkMode
           </label>
         </div>
       </div>
